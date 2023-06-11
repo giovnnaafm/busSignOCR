@@ -22,7 +22,7 @@ public class Filters extends Helpers{
         }
     }
 
-    public void greyBand(String band) {
+    public void grayBand(String band) {
         int width = img.getWidth();
         int height = img.getHeight();
 
@@ -127,7 +127,7 @@ public class Filters extends Helpers{
 
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
-                var pixel = img.getRGB(i,j);
+                int pixel = img.getRGB(i,j);
                 int pixelRedColor = new Color(pixel).getRed();
                 Color scale = new Color(pixelRedColor, 0, 0);
                 img.setRGB(i,j,scale.getRGB());
@@ -141,7 +141,7 @@ public class Filters extends Helpers{
 
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
-                var pixel = img.getRGB(i,j);
+                int pixel = img.getRGB(i,j);
                 int pixelGreenColor = new Color(pixel).getGreen();
                 Color scale = new Color(0, pixelGreenColor, 0);
                 img.setRGB(i,j,scale.getRGB());
@@ -155,7 +155,7 @@ public class Filters extends Helpers{
 
         for(int i = 0; i < width; i++){
             for(int j = 0; j < height; j++){
-                var pixel = img.getRGB(i,j);
+                int pixel = img.getRGB(i,j);
                 int pixelBlueColor = new Color(pixel).getBlue();
                 Color scale = new Color(0, 0, pixelBlueColor);
                 img.setRGB(i,j,scale.getRGB());
@@ -240,7 +240,47 @@ public class Filters extends Helpers{
         return imagemSaida;
     }
 
+    public BufferedImage applyConvolutionFilter() {
+        int width = img.getWidth();
+        int height = img.getHeight();
+        BufferedImage filteredImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
+        double[][] kernel = {
+            { 0, -1, 0 },
+            {-1,  5,-1 },
+            { 0, -1, 0 }
+        };
+
+        int kernelSize = kernel.length;
+        int offset = kernelSize / 2;
+
+        for (int y = offset; y < height - offset; y++) {
+            for (int x = offset; x < width - offset; x++) {
+                double redSum = 0;
+                double greenSum = 0;
+                double blueSum = 0;
+
+                for (int j = 0; j < kernelSize; j++) {
+                    for (int i = 0; i < kernelSize; i++) {
+                        Color pixelColor = new Color(img.getRGB(x + i - offset, y + j - offset));
+                        double kernelValue = kernel[j][i];
+
+                        redSum += pixelColor.getRed() * kernelValue;
+                        greenSum += pixelColor.getGreen() * kernelValue;
+                        blueSum += pixelColor.getBlue() * kernelValue;
+                    }
+                }
+
+                int red = Math.min(Math.max((int) redSum, 0), 255);
+                int green = Math.min(Math.max((int) greenSum, 0), 255);
+                int blue = Math.min(Math.max((int) blueSum, 0), 255);
+
+                int filteredRGB = new Color(red, green, blue).getRGB();
+                filteredImage.setRGB(x, y, filteredRGB);
+            }
+        }
+        return filteredImage;
+    }
 }
 
 

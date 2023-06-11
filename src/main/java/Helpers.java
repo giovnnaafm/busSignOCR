@@ -10,7 +10,7 @@ public class Helpers {
     }
 
     public int[] getRBG(int i, int j){
-        var pixel = img.getRGB(i,j);
+        int pixel = img.getRGB(i,j);
         int pixelRedColor = new Color(pixel).getRed();
         int pixelGreenColor = new Color(pixel).getGreen();
         int pixelBlueColor = new Color(pixel).getBlue();

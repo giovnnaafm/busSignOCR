@@ -3,9 +3,48 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Lept4J" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tess4J" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/OpenCV/opencv/build/java/opencv-470.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <NATIVE>
+          <root url="file://C:/OpenCV/opencv/build/java/x64" />
+        </NATIVE>
+        <SOURCES>
+          <root url="jar://C:/OpenCV/opencv/build/java/opencv-470.jar!/" />
+          <root url="jar://C:/OpenCV/opencv/build/java/opencv-470.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/tess4j-5.7.0.jar!/" />
+          <root url="file://C:/Program Files/leptonica-1.83.0" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://C:/Program Files/tess4j-tess4j-5.7.0/src/main/java" />
+          <root url="file://C:/Program Files/tess4j-tess4j-5.7.0/src/test/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/jna-5.13.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
